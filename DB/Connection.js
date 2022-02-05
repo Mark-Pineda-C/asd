@@ -1,7 +1,7 @@
 'use strict'
 const mongoose = require('mongoose');
-const USER = "MarkP";
-const PASSWORD = 'y1xATOtrmcQAp9Km';
+const USER = "CristhianR";
+const PASSWORD = '12cristhian34';
 
 const URI = 'mongodb+srv://'+USER+':'+PASSWORD+'@instavotedb.rwssj.mongodb.net/Instavote-backend?retryWrites=true&w=majority';
 
