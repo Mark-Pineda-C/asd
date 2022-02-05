@@ -51,6 +51,44 @@ var controller = {
                 message: 'Los datos no son validos'
             })
         }
+    },
+    login: (req,res) => {
+        var params = req.body;
+
+        try{
+            var validate_id = !validator.isEmpty(params.id);
+            var validate_pin = !validator.isEmpty(params.pin);
+
+        }catch(err){
+            console.log(err);
+            return res.status(200).send({
+                status: 'error',
+                message: 'Faltan datos'
+            })
+        }
+
+        if(validate_pin && validate_id){
+            User.findOne({id: params.id, pin: params.pin}, (err, user) => {
+                if(err || !user){
+                    return res.status(404).send({
+                        status: 'error',
+                        message: 'El usuario no existe'
+                    })
+                }
+                if(user){
+                    return res.status(200).send({
+                        status: 'sucess',
+                        message: user
+                    })
+                }
+            });
+        }else{
+            return res.status(200).send({
+                status: 'error',
+                message: 'Los datos no son validos'
+            })
+        }
+
     }
 }
 
