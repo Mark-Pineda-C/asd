@@ -8,6 +8,6 @@ var router = express.Router();
 
 router.get('/test',UserController.test);
 router.post('/create-admin',UserController.createAdmin);
-
+router.post('/validate',UserController.login);
 
 module.exports = router;
