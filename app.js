@@ -9,6 +9,9 @@ var app = express();
 
 //Cargar ficheros rutas
 var user_routes = require('./routes/UserRouter');
+var process_routes = require('./routes/ProcessRouter');
+var vote_routes = require('./routes/VoteRouter');
+var other_routes = require('./routes/OtherRoutes');
 
 //Middlewares
 app.use(cors());
@@ -24,7 +27,10 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/users',user_routes);
+app.use('/api/users',user_routes);
+app.use('/api/process',process_routes);
+app.use('/api/votes',vote_routes);
+app.use('/api/others',other_routes);
 
 //Exportar modulo (fichero actual)
 module.exports = app;

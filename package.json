@@ -10,13 +10,14 @@
   "author": "C-team",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.25.0",
+    "all-image": "0.0.4",
     "body-parser": "^1.19.1",
     "cors": "^2.8.5",
     "express": "^4.17.2",
     "mongoose": "^6.1.10",
-    "validator": "^13.7.0",
-    "vue-axios": "^3.4.0"
+    "multiparty": "^4.2.3",
+    "randexp": "^0.5.3",
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
