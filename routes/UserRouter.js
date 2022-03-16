@@ -13,5 +13,6 @@ router.post('/validate-admin',UserController.loginAdmin);
 router.post('/insert-many',UserController.InsertUsers);
 router.delete('/delete-users/:institute',UserController.DeleteUsers);
 router.get('/get-users/:institute',UserController.GetUsers);
+router.put('/update-vote/:id',UserController.SubmitVote);
 
 module.exports = router;

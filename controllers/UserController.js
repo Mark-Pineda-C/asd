@@ -1,8 +1,12 @@
 'use-strict'
+require('dotenv').config()
 
+var jwt = require('jsonwebtoken');
 var validator = require('validator');
 var User = require('../models/Users');
 var Process = require('../models/Process');
+const Users = require('../models/Users');
+const DateTime = require('luxon');
 var randexp = require('randexp').randexp;
 
 function generateId(quantity) {
@@ -90,21 +94,42 @@ var controller = {
                         message: 'El usuario no existe'
                     })
                 }
-                if(user){
-                    Process.findOne({InstituteName: params.institute}, '_id', (procErr, process) => {
-                        if (procErr) {
-                            return res.status(200).send({
-                                status: 'error',
-                                message: 'El proceso no existe'
-                            })
-                        }
-                        return res.status(200).send({
-                            status: 'success',
-                            role: user.role,
-                            message: process._id,
-                        })
+                if (user.hasVoted === true){
+                    return res.status(200).send({
+                        status: 'error',
+                        message: 'Solo se puede ingresar a la votacion una vez'
                     });
                 }
+                Process.findOne({InstituteName: params.institute}, '_id ProcessDateStart ProcessDateEnd', (procErr, process) => {
+                    if (procErr) {
+                        return res.status(200).send({
+                            status: 'error',
+                            message: 'El proceso no existe'
+                        })
+                    }
+                    var start = DateTime.fromISO(process.ProcessDateStart).ts;
+                    var end = DateTime.fromISO(process.ProcessDateEnd).ts;
+                    if( DateTime.now().ts < start) {
+                        return res.status(200).send({
+                            status: 'error',
+                            message: 'El proceso aun no esta activo'
+                        });
+                    }
+                    if( DateTime.now().ts > end) {
+                        return res.status(200).send({
+                            status: 'error',
+                            message: 'El proceso ya finalizo'
+                        });
+                    }
+                    var remainTime = end.diffNow().milliseconds.toString()
+                    const accessToken = jwt.sign(user, process.env.JWT_SECRET_PASSPHRASE, {expiresIn:remainTime})
+                    return res.status(200).send({
+                        status: 'success',
+                        role: user.role,
+                        token: accessToken,
+                        message: process._id,
+                    })
+                });
             });
         }else{
             return res.status(200).send({
@@ -234,6 +259,21 @@ var controller = {
                 status: 'success',
                 listedUsers
             });
+        })
+    },
+    SubmitVote: (req,res) => {
+        var id = req.params.id;
+        Users.findByIdAndUpdate(id,{ $set: {hasVoted: true}}, (err) =>{
+            if(err){
+                return res.status(200).send({
+                    status: 'error',
+                    message: "Ocurrio un error inesperado."
+                })
+            }
+            return res.status(200).send({
+                status: 'success',
+                message: "Se emitio el voto correctamente"
+            })
         })
     }
 }

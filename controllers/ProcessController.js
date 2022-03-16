@@ -17,11 +17,13 @@ var controller = {
         process.ProcessName = params.ProcessName
         process.InstituteName = params.InstituteName
         process.ProcessBanner = params.ProcessBanner
-        process.ProcessDate = params.ProcessDate
+        process.ProcessDateStart = params.ProcessDateStart
+        process.ProcessDateEnd = params.ProcessDateEnd
         process.Positions = params.Positions
 
         process.save((err,processStored) => {
             if(err || !processStored){
+                console.log(err);
                 return res.status(200).send({
                     status: 'error',
                     message: 'Error al momento de guardar'

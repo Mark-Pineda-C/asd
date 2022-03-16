@@ -6,7 +6,6 @@ var Schema = mongoose.Schema;
 var ProcessSchema = Schema({
     ProcessName: String,
     InstituteName: String,
-    ProcessBanner: String,
     Positions: [{
         position: String,
         candidates: [{
@@ -15,7 +14,8 @@ var ProcessSchema = Schema({
             image: String
         }]
     }],
-    ProcessDate: { type: Date, default: Date.now }
+    ProcessDateStart: { type: Date, default: Date.now },
+    ProcessDateEnd: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model('Process', ProcessSchema);
