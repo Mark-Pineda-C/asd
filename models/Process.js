@@ -4,17 +4,20 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ProcessSchema = Schema({
-    name: String,
-    institution: String,
-    logo: String,
-    candidates: {
-        name: String,
-        image: String,
+    ProcessName: String,
+    InstituteName: String,
+    Positions: [{
         position: String,
-        group: String,
-        voteCont: Number
-    },
-    voteDate: { type: Date, default: Date.now }
+        candidates: [{
+            name: String,
+            group: String,
+            image: String,
+            counter: {type: Number, default: 0}
+        }]
+    }],
+    ProcessDateStart: { type: Date, default: Date.now },
+    ProcessDateEnd: { type: Date, default: Date.now },
+    hasEnded: {type: Boolean, default: false}
 });
 
 module.exports = mongoose.model('Process', ProcessSchema);

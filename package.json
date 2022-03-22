@@ -10,9 +10,18 @@
   "author": "C-team",
   "license": "ISC",
   "dependencies": {
+    "bree": "8.0.2",
+    "all-image": "0.0.4",
     "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
     "express": "^4.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "luxon": "^2.3.1",
     "mongoose": "^6.1.10",
+    "multiparty": "^4.2.3",
+    "nodemailer": "^6.7.2",
+    "randexp": "^0.5.3",
     "validator": "^13.7.0"
   },
   "devDependencies": {
