@@ -14,20 +14,19 @@ var UserSchema = Schema({
         type: String,
         default: ''
     },
-    accessToken: {
-        type: String,
-        default: ''
-    },
     hasVoted: {
         type: Boolean, 
         default:false
+    },
+    isActive: {
+        type: Boolean,
+        default: false
     },
     role: {
         type: String, 
         enum:['USER','ADMIN'], 
         default:'USER'
     },
-    userToken: String,
     institution: String
 });
 

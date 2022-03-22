@@ -10,6 +10,7 @@
   "author": "C-team",
   "license": "ISC",
   "dependencies": {
+    "bree": "8.0.2",
     "all-image": "0.0.4",
     "body-parser": "^1.19.1",
     "cors": "^2.8.5",
@@ -19,6 +20,7 @@
     "luxon": "^2.3.1",
     "mongoose": "^6.1.10",
     "multiparty": "^4.2.3",
+    "nodemailer": "^6.7.2",
     "randexp": "^0.5.3",
     "validator": "^13.7.0"
   },

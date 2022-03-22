@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var VoteSchema = Schema({
+    process: String,
     voteDate: { type: Date, default: Date.now },
     votes: [
         {

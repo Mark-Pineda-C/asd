@@ -11,11 +11,13 @@ var ProcessSchema = Schema({
         candidates: [{
             name: String,
             group: String,
-            image: String
+            image: String,
+            counter: {type: Number, default: 0}
         }]
     }],
     ProcessDateStart: { type: Date, default: Date.now },
-    ProcessDateEnd: { type: Date, default: Date.now }
+    ProcessDateEnd: { type: Date, default: Date.now },
+    hasEnded: {type: Boolean, default: false}
 });
 
 module.exports = mongoose.model('Process', ProcessSchema);
