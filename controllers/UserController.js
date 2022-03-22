@@ -2,6 +2,7 @@
 require('dotenv').config();
 
 const nodemailer = require("nodemailer");
+
 var jwt = require('jsonwebtoken');
 var validator = require('validator');
 var User = require('../models/Users');

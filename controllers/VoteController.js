@@ -1,5 +1,6 @@
 'use strict'
 
+
 var Votes = require('../models/Vote');
 var Process = require('../models/Process');
 

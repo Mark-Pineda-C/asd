@@ -13,5 +13,4 @@ const connectDB = mongoose.connect(URI,{
         err => console.log(err)
     )
 
-
 module.exports = connectDB;
