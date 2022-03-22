@@ -3,6 +3,9 @@
 var validator = require('validator');
 var Process = require('../models/Process');
 
+function random(min, max) {
+    return Math.floor((Math.random() * (max - min + 1)) + min);
+}
 var controller = {
     test: (req,res) => {
         return res.status(200).send({
@@ -37,7 +40,7 @@ var controller = {
 
     },
     getProcessInfo: (req,res) => {
-        Process.find({},'ProcessDate ProcessName InstituteName ProcessBanner', (err, processList) => {
+        Process.find({}, (err, processList) => {
             if(err){
                 console.log(err);
                 return res.status(200).send({
@@ -69,7 +72,8 @@ var controller = {
             }
             return res.status(200).send({
                 status: 'success',
-                message: process.Positions
+                message: process.Positions,
+                object: process
             })
         })
     }

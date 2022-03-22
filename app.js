@@ -1,4 +1,6 @@
 'use strict'
+require('dotenv').config()
+
 var cors = require('cors')
 //Cargar modulos de node para cargar el servidor
 var express = require('express');
@@ -16,7 +18,7 @@ var other_routes = require('./routes/OtherRoutes');
 //Middlewares
 app.use(cors());
 app.use(bodyParser.urlencoded({extended:false}));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '1mb'}));
 
 //CORS
 app.use((req, res, next) => {
